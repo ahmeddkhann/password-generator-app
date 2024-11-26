@@ -3,10 +3,9 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return (
     <Stack>
-      
       <Stack.Screen
         name="index"
-        options={{ title: "Password Generator App" }}
+        options={{ headerShown: false }} // Removes the title
       />
     </Stack>
   );
