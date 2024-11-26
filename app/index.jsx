@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import * as Yup from "yup"
 import { Formik } from 'formik'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const passwordValidation = Yup.object().shape({
   passwordLength: Yup.number()
@@ -29,13 +30,47 @@ const App = () => {
   return result;
  }
 
+const generatePassword = (passswordLength) => {
+  let charactersList = "";
+
+  const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+  const numbersChars = "1234567890";
+  const symbolsChars = "!@#$%^&*()_+"
+
+  if (uppercase){
+    charactersList += uppercaseChars
+  }
+  if (lowercase){
+    charactersList += lowercaseChars
+  }
+  if (symbols){
+    charactersList += symbolsChars
+  }
+  if (numbers){
+    charactersList += numbersChars
+  }
+  const password = createPassword(charactersList, passswordLength)
+  setPassword(password);
+  setIsPasswordGenerated(true);
+
+}
+
+const resetPassword = () => {
+  setIsPasswordGenerated(false)
+  setPassword("")
+  setLowercase(true)
+  setNumbers(false)
+  setSymbols(false)
+  setUppercase(false)
+}
  
   return (
-    <View>
-      <Text>
-      Welcome to Password Generator App!
-      </Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text> Welcome to Password Generator App</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 
